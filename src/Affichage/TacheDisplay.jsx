@@ -9,8 +9,20 @@ const TacheDisplay = (props) => {
     );
     console.log('Liste JSX de nom', tachesJSX);
 
+    const handleTermineTache = (data) => {
+        data.preventDefault(); 
+        props.onTermineTacheToDo(data);
+    }
+
+    const handleDeleteTache = (data) => {
+        data.preventDefault(); 
+        props.onDeleteTacheToDo(data);
+    }
+
     return (
         <>
+        <ElementListe onTermineTache={handleTermineTache} />
+        <ElementListe onDeleteTache={handleDeleteTache} />
             <h2>Liste de tache</h2>
             <ul>{tachesJSX}</ul>
         </>

@@ -2,17 +2,44 @@ import PropTypes from 'prop-types';
 import style from '../style/style.css';
 
 const ElementListe = (props) => {
-    const {nom, description, priorite, termine} = props;
+    const {id, nom, description, priorite, termine} = props;
     const styleUrgent=(priorite=='Urgent') ? style.styleUrgent :'';
-    const Termine =() => {
-        document.getElementById("bouttontermine").disabled = true;
+    
+    const handleTermine = (e) => {
+        e.preventDefault(); 
 
+        const data = {
+            id: id,
+            nom: nom,
+            description: description,
+            priorite: priorite,
+            termine: true
+        }
+        
+        console.log(data); //verif console 
+
+        props.onTermineTache(data);
+    }
+    const handleDelete = (e) => {
+        e.preventDefault(); 
+
+        const data = {
+            id: id,
+            nom: nom,
+            description: description,
+            priorite: priorite,
+            termine: termine
+        }
+        
+        console.log(data); //verif console 
+
+        props.onDeleteTache(data);
     }
     return (
         <ul>
             
-            <li>{nom} <span className={styleUrgent}>{priorite}</span><button disabled = {true}>Termine</button></li>
-            <li>{description} <button id='bouttontermine' type='button' onClick={Termine}>Supprimer</button></li>
+            <li>{nom} <span className={styleUrgent}>{priorite}</span><button onClick={handleTermine} disabled = {termine}>Termine</button></li>
+            <li>{description} <button onClick={handleDelete}>Supprimer</button></li>
             
         </ul>
     )

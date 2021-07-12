@@ -18,15 +18,15 @@ const AffichageAddTache = (props) => {
         }
         
         console.log(data); //verif console 
-        setNom=('');
-        setDescription=('');
-        setPriorite=('normal');
+        setNom('');
+        setDescription('');
+        setPriorite('normal');
         props.onAddTache(data);
     }
 
     return (
 <div>
-    <form ajouter={handleAdd}>
+    <form onSubmit={handleAdd}>
         <div>
             <h2>Ajouter une nouvelle tâche</h2>
         </div>
